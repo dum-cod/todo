@@ -1,0 +1,22 @@
+PODS:
+  - context (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - context (from `.symlinks/plugins/context/ios`)
+  - Flutter (from `Flutter`)
+
+EXTERNAL SOURCES:
+  context:
+    :path: ".symlinks/plugins/context/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  context: 5d6ab9664f6a8ece3aeaf4dfe7ef4e6f6f57c432
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+
+PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+
+COCOAPODS: 1.16.2

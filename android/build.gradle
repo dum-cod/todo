@@ -1,0 +1,74 @@
+//+dc
+//plugins {
+  //  id 'com.android.application'// version '8.0.0' apply false
+    //id 'com.android.library' version '8.0.0' apply false
+    //id 'org.jetbrains.kotlin.android' //version '1.8.10' apply false
+//}
+
+subprojects {
+    afterEvaluate {
+
+//        if (project.plugins.hasPlugin("com.android.application")
+//                || project.plugins.hasPlugin("com.android.library")) {
+//
+//            if (project.name == "flutter_unity_widget") {
+//                // override version numbers if needed
+//                project.android.compileOptions {
+//                    sourceCompatibility = JavaVersion.VERSION_17
+//                    targetCompatibility = JavaVersion.VERSION_17
+//                }
+//                project.android.kotlinOptions {
+//                    jvmTarget = JavaVersion.VERSION_17
+//                }
+//                project.android {
+//                    // add namespace if it is missing
+//                    if (namespace == null) {
+//                        namespace = project.group
+//                    }
+//
+//                    // you can also override stuff like compileSdk
+//                    // compileSdk = 34
+//                }
+//            }
+//        }
+
+        if (project.hasProperty('android')) {
+            project.android {
+                if (namespace == null) {
+                    namespace project.group
+                }
+            }
+        }
+    }
+}
+//-dc
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    //+dc
+//    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+//        kotlinOptions.jvmTarget = "1.8"
+//    }
+//
+//    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KaptGenerateStubs).configureEach {
+//        kotlinOptions.jvmTarget = "1.8"
+//    }
+    //-dc
+
+}
+
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
+
