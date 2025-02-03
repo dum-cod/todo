@@ -1,16 +1,23 @@
-# ToDo App
+# Todo App with Flutter
 
-A new Flutter project.
+A feature-rich todo application built with Flutter, implementing local persistence using SQLite and state management with Riverpod.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **CRUD Operations**
+  - Create new todos
+  - Mark todos as complete/incomplete
+  - Delete todos permanently
+  - Persistent local storage
+- **State Management**
+  - Riverpod for reactive state management
+  - Provider-based architecture
+- **Local Storage**
+  - SQLite database using `sqflite`
+  - Automatic database initialization
+  - Data persistence across app restarts
+- **UI Components**
+  - Clean Material Design interface
+  - Responsive layout
+  - Interactive dismissible items
+  - Real-time updates

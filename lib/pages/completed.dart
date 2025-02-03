@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:social/providers/todo_provider.dart';
 
 import '../models/todo.dart';
+import '../providers/todo_provider.dart';
 
 class CompletedTodo extends ConsumerWidget {
   const CompletedTodo({super.key});
