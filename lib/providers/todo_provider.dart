@@ -1,40 +1,45 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../models/todo.dart';
+import '../services/database_helper.dart';
 
 final todoProvider = StateNotifierProvider<TodoListNotifier, List<Todo>>((ref) {
   return TodoListNotifier();
 });
 
 class TodoListNotifier extends StateNotifier<List<Todo>> {
-  TodoListNotifier() : super([]);
+  final DatabaseHelper _dbHelper = DatabaseHelper.instance;
 
-  void addTodo(String content) {
-    state = [
-      ...state,
-      Todo(
-        todoId: state.isEmpty ? 0 : state[state.length - 1].todoId + 1,
-        content: content,
-        completed: false,
-      )
-    ];
+  TodoListNotifier() : super([]) {
+    _loadTodos();
   }
 
-  void completeTodo(int id) {
-    state = [
-      for (final todo in state)
-        if (todo.todoId == id)
-          Todo(
-            todoId: todo.todoId,
-            content: todo.content,
-            completed: true,
-          )
-        else
-          todo
-    ];
+  Future<void> _loadTodos() async {
+    final todos = await _dbHelper.getAllTodos();
+    state = todos;
   }
 
-  void deleteTodo(int id) {
-    state = state.where((todo) => todo.todoId != id).toList();
+  Future<void> addTodo(String content) async {
+    final newTodo = Todo(
+      content: content,
+      completed: false,
+    );
+    await _dbHelper.insertTodo(newTodo);
+    await _loadTodos();
+  }
+
+  Future<void> completeTodo(int id) async {
+    final todo = state.firstWhere((t) => t.todoId == id);
+    final updatedTodo = Todo(
+      todoId: todo.todoId,
+      content: todo.content,
+      completed: !todo.completed,
+    );
+    await _dbHelper.updateTodo(updatedTodo);
+    await _loadTodos();
+  }
+
+  Future<void> deleteTodo(int id) async {
+    await _dbHelper.deleteTodo(id);
+    await _loadTodos();
   }
 }

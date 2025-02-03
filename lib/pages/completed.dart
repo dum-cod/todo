@@ -31,7 +31,7 @@ class CompletedTodo extends ConsumerWidget {
                   SlidableAction(
                     onPressed: (context) => ref
                         .watch(todoProvider.notifier)
-                        .deleteTodo(completedTodos[index].todoId),
+                        .deleteTodo(completedTodos[index].todoId!),
                     backgroundColor: Colors.red,
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                     icon: Icons.delete,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'todomain.dart';
+import 'home.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
               color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
         ),
       ),
-      home: Todomain(),
+      home: Home(),
     );
   }
 }

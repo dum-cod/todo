@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:social/providers/todo_provider.dart';
-
+import 'providers/todo_provider.dart';
 import 'models/todo.dart';
 import 'pages/add.dart';
 import 'pages/completed.dart';
 
-class Todomain extends ConsumerWidget {
-  const Todomain({super.key});
+class Home extends ConsumerWidget {
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -61,7 +60,7 @@ class Todomain extends ConsumerWidget {
                   SlidableAction(
                     onPressed: (context) => ref
                         .watch(todoProvider.notifier)
-                        .deleteTodo(activeTodos[index].todoId),
+                        .deleteTodo(activeTodos[index].todoId!),
                     backgroundColor: Colors.red,
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                     icon: Icons.delete,
@@ -72,7 +71,7 @@ class Todomain extends ConsumerWidget {
                   SlidableAction(
                     onPressed: (context) => ref
                         .watch(todoProvider.notifier)
-                        .completeTodo(activeTodos[index].todoId),
+                        .completeTodo(activeTodos[index].todoId!),
                     backgroundColor: Colors.green,
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                     icon: Icons.check,
